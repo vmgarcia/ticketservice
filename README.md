@@ -9,3 +9,6 @@ Tests:
 
 gradlew test
 
+Executable jar:
+
+gradlew build
