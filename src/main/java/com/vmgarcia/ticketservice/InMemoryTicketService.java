@@ -43,6 +43,7 @@ public class InMemoryTicketService implements TicketService {
     }
     @Override
     public int numSeatsAvailable(Optional<Integer> venueLevel) {
+        freeExpiredHolds();
         if (venueLevel.isPresent()) {
             int level = venueLevel.get();
             return availableSeating.get(level);
@@ -55,7 +56,8 @@ public class InMemoryTicketService implements TicketService {
 
     @Override
     public SeatHold findAndHoldSeats(int numSeats, Optional<Integer> minLevel, Optional<Integer> maxLevel, String customerEmail) {
-        int lowerBound = minLevel.isPresent()? minLevel.get(): 0;
+        freeExpiredHolds();
+        int lowerBound = minLevel.isPresent()? minLevel.get(): 1;
         int upperBound = maxLevel.isPresent()? maxLevel.get(): 4;
         int seatsReserved = 0;
         Map<Integer, Integer> reservedSeating = new HashMap<>();
@@ -91,6 +93,7 @@ public class InMemoryTicketService implements TicketService {
 
     @Override
     public String reserveSeats(int seatHoldId, String customerEmail) {
+        freeExpiredHolds();
         SeatHold hold = seatHoldLookup.get(seatHoldId);
         boolean purchaseSuccess = hold.completePurchase(customerEmail, secondsForExpiration);
         if (purchaseSuccess) {
