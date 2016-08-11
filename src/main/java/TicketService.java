@@ -20,6 +20,8 @@ public interface TicketService {
  * @param maxLevel the maximum venue level
  * @param customerEmail unique identifier for the customer
  * @return a SeatHold object identifying the specific seats and related information
+ *          null is returned if the amount of seats they requested at the levels they indicated
+ *          aren't available.
  *
  */
     SeatHold findAndHoldSeats(int numSeats, Optional<Integer> minLevel,
@@ -30,7 +32,7 @@ public interface TicketService {
  * @param seatHoldId the seat hold identifier
  * @param customerEmail the email address of the customer to which the seat
  *                      is assigned
- * @return a reservation confirmation code
+ * @return a reservation confirmation code or null if the reservation they attempted to make fails
  *
  */
     String reserveSeats(int seatHoldId, String customerEmail);
