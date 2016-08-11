@@ -9,25 +9,29 @@ import java.util.Scanner;
  * Created by Victor Garcia on 8/11/2016.
  */
 public class CommandLineTicketService {
-    public static void main() {
+    public static void main(String[] args) {
         TicketService ts = new InMemoryTicketService(20);
 
         System.out.println("Welcome to the Ticket Service App!");
+        Scanner scan = new Scanner(System.in);
+
         while(true) {
             System.out.println("1. Check what seats are available.");
             System.out.println("2. Find and hold seats.");
             System.out.println("3. Buy and reserve seats.");
             System.out.println("4. Exit.");
             System.out.println("Please select the option you wish to use: ");
-            Scanner scan = new Scanner(System.in);
-            String choice = scan.next();
+            String choice = "";
+            choice = scan.nextLine();
+
             if (choice.equals("1")) {
-                printAvailableSeats(ts);
+                printAvailableSeats(ts, scan);
             } else if (choice.equals("2")) {
-                processSeatHold(ts);
+                processSeatHold(ts, scan);
             } else if (choice.equals("3")) {
-                processSeatReservation(ts);
+                processSeatReservation(ts, scan);
             } else {
+                //scan.close();
                 break;
             }
 
@@ -35,10 +39,9 @@ public class CommandLineTicketService {
         }
     }
 
-    private static void processSeatReservation(TicketService ts) {
+    private static void processSeatReservation(TicketService ts, Scanner scan) {
         System.out.println("To finish reserving your seats please input");
         System.out.println("email: ");
-        Scanner scan = new Scanner(System.in);
         String email = scan.nextLine();
         System.out.println("Hold id: ");
         int holdId = Integer.parseInt(scan.nextLine());
@@ -52,8 +55,7 @@ public class CommandLineTicketService {
         }
     }
 
-    private static void processSeatHold(TicketService ts) {
-        Scanner scan = new Scanner(System.in);
+    private static void processSeatHold(TicketService ts, Scanner scan) {
         System.out.println("What is the minimum level you want to buy tickets for?");
         System.out.println("Leave blank to see availability for no minimum.");
         String minString = scan.nextLine();
@@ -84,8 +86,7 @@ public class CommandLineTicketService {
 
     }
 
-    private static void printAvailableSeats(TicketService ts) {
-        Scanner scan = new Scanner(System.in);
+    private static void printAvailableSeats(TicketService ts, Scanner scan) {
         System.out.println("What levels do you want to see seat availability for?");
         System.out.println("Leave blank to see availability for all levels.");
         String levelString = scan.nextLine();
