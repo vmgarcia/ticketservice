@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
  */
 public interface SeatHold {
 /**
- * Tell if the max amount of time for a reservation has passed.
+ * Tell if the seats being held have been purchased
  *
  * @return false if the max amount of time for a reservation has passed. true otherwise.
  */
-    boolean holdIsValid();
+    boolean seatsWerePurchased();
 
 /**
  * Get the level of the seats being held.
