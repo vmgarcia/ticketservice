@@ -85,9 +85,6 @@ public class InMemorySeatHoldTest {
         InMemorySeatHold seatHold1 = new InMemorySeatHold(testSeatMap, "testemail@email.com");
         InMemorySeatHold seatHold2 = new InMemorySeatHold(testSeatMap, "testemail@email.com");
         InMemorySeatHold seatHold3 = new InMemorySeatHold(testSeatMap, "testemail@email.com");
-        System.out.println(seatHold1.getSeatHoldId());
-        System.out.println(seatHold2.getSeatHoldId());
-        System.out.println(seatHold3.getSeatHoldId());
 
         assert  seatHold1.getSeatHoldId() == 1;
         assert  seatHold2.getSeatHoldId() == 2;
