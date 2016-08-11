@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -13,18 +14,12 @@ public interface SeatHold {
     boolean seatsWerePurchased();
 
 /**
- * Get the level of the seats being held.
+ * Get the information on which seats are being held.
  *
- * @return an integer indicating the level of the seat being held
+ * @return a Map from the level of the seat being held to the number of seats being held on that level
  */
-    int getSeatLevel();
+    Map<Integer, Integer> getHeldSeats();
 
-/**
- * Get the number of seats being held.
- *
- * @return an integer indicating the number of seats being held.
- */
-    int getNumSeats();
 
 /**
  * Get the timestamp from when this SeatHold was created
@@ -38,7 +33,7 @@ public interface SeatHold {
  *
  * @return a UUID that is generated when the object is created
  */
-    UUID getSeatHoldId();
+    int getSeatHoldId();
 
     /**
  * Says if the amount of seconds the seats can be reserved for has passed.
