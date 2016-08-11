@@ -1,3 +1,5 @@
+package com.vmgarcia.ticketservice;
+
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;

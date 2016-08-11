@@ -1,7 +1,9 @@
+package com.vmgarcia.ticketservice;
+
+
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by Victor Garcia on 8/11/2016.
