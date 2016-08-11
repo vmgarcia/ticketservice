@@ -33,7 +33,7 @@ public interface SeatHold {
 /**
  * Get the id of the SeatHold
  *
- * @return an int ID that is generated when the object is created
+ * @return a int ID that is generated when the object is created
  */
     int getSeatHoldId();
 

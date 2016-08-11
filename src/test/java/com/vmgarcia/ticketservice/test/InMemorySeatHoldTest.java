@@ -14,6 +14,7 @@ import static java.lang.Thread.*;
  * Created by Victor Garcia on 8/11/2016.
  */
 public class InMemorySeatHoldTest {
+
     @Test
     public void testIfExpires() {
         Map<Integer, Integer> testSeatMap = new HashMap<>();
@@ -72,6 +73,25 @@ public class InMemorySeatHoldTest {
         assert seatHold2.completePurchase("testemail@email.com", 1) == false;
 
     }
-    
+
+    @Test
+    public void testCorrectIdCreation() {
+        Map<Integer, Integer> testSeatMap = new HashMap<>();
+        testSeatMap.put(1, 25*50);
+        testSeatMap.put(2, 20*100);
+        testSeatMap.put(3, 15*100);
+        testSeatMap.put(4, 15*100);
+        InMemorySeatHold.reinitializeId();
+        InMemorySeatHold seatHold1 = new InMemorySeatHold(testSeatMap, "testemail@email.com");
+        InMemorySeatHold seatHold2 = new InMemorySeatHold(testSeatMap, "testemail@email.com");
+        InMemorySeatHold seatHold3 = new InMemorySeatHold(testSeatMap, "testemail@email.com");
+        System.out.println(seatHold1.getSeatHoldId());
+        System.out.println(seatHold2.getSeatHoldId());
+        System.out.println(seatHold3.getSeatHoldId());
+
+        assert  seatHold1.getSeatHoldId() == 1;
+        assert  seatHold2.getSeatHoldId() == 2;
+        assert  seatHold3.getSeatHoldId() == 3;
+    }
 
 }

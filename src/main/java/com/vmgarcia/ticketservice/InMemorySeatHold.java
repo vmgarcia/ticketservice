@@ -4,6 +4,7 @@ package com.vmgarcia.ticketservice;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Victor Garcia on 8/11/2016.
@@ -14,10 +15,9 @@ public class InMemorySeatHold implements SeatHold, Comparable<InMemorySeatHold>{
     private boolean purchaseCompleted;
     private int seatHoldId;
     private LocalDateTime creationTime;
-    private static int currentId = 0;
+    private static AtomicInteger currentId = new AtomicInteger(0);
     public InMemorySeatHold(Map<Integer, Integer> heldSeats, String customerEmail) {
-        currentId += 1;
-        this.seatHoldId = currentId;
+        this.seatHoldId = currentId.incrementAndGet();
         this.heldSeats = heldSeats;
         this.customerEmail = customerEmail;
         this.creationTime = LocalDateTime.now();
@@ -80,5 +80,9 @@ public class InMemorySeatHold implements SeatHold, Comparable<InMemorySeatHold>{
         } else {
             return false;
         }
+    }
+
+    public static void reinitializeId() {
+        currentId = new AtomicInteger(0);
     }
 }
