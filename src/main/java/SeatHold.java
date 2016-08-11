@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Created by Victor Garcia on 8/10/2016.
@@ -23,16 +24,23 @@ public interface SeatHold {
  *
  * @return an integer indicating the number of seats being held.
  */
-    int getSeatCount();
+    int getNumSeats();
 
 /**
  * Get the timestamp from when this SeatHold was created
  *
  * @return a LocalDateTime object that indicates the time when this hold was created.
  */
-    LocalDateTime getTimeOfCreation();
+    LocalDateTime getCreationTime();
 
 /**
+ * Get the id of the SeatHold
+ *
+ * @return a UUID that is generated when the object is created
+ */
+    UUID getSeatHoldId();
+
+    /**
  * Says if the amount of seconds the seats can be reserved for has passed.
  *
  * @param numberOfSeconds the number of seconds seats can be reserved for
@@ -40,4 +48,13 @@ public interface SeatHold {
  *          False otherwise.
  */
     boolean holdExpired(int numberOfSeconds);
+
+/**
+ * Complete the purchase of the seats being held.
+ *
+ * @param email the email of the purchaser. Used to confirm that the right person is
+ *              completing the purchase
+ * @return returns true if the purchase was successful, false otherwise.
+ */
+    boolean completePurchase(String email, int numberOfSeconds);
 }
