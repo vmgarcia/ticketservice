@@ -31,4 +31,13 @@ public interface SeatHold {
  * @return a LocalDateTime object that indicates the time when this hold was created.
  */
     LocalDateTime getTimeOfCreation();
+
+/**
+ * Says if the amount of seconds the seats can be reserved for has passed.
+ *
+ * @param numberOfSeconds the number of seconds seats can be reserved for
+ * @return True if the number of seconds seats can be reserved for has passed.
+ *          False otherwise.
+ */
+    boolean holdExpired(int numberOfSeconds);
 }
