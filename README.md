@@ -7,8 +7,13 @@ and run for
 
 Tests:
 
-gradlew test
+>gradlew test
 
 Executable jar:
 
-gradlew build
+>gradlew assemble
+
+Then a build directory should be generated. In 'build/distributions' there is a
+zipped director. Unzip and in the bin directory there should be two executables with
+the name ticketservice. If you are on windows run "ticketservice.bat", on mac and linux
+use the other one. This should run a command line program which is the ticket service.
