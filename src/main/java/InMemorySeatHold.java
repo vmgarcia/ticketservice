@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -7,16 +8,15 @@ import java.util.UUID;
  */
 public class InMemorySeatHold implements SeatHold, Comparable<InMemorySeatHold>{
     private String customerEmail;
-    private int numSeats;
-    private int level;
+    private Map<Integer, Integer> heldSeats;
     private boolean purchaseCompleted;
-    private UUID seatHoldId;
+    private int seatHoldId;
     private LocalDateTime creationTime;
-
-    public InMemorySeatHold(int numSeats, int level, String customerEmail) {
-        this.seatHoldId = UUID.randomUUID();
-        this.numSeats = numSeats;
-        this.level = level;
+    private static int currentId = 0;
+    public InMemorySeatHold(Map<Integer, Integer> heldSeats, String customerEmail) {
+        currentId += 1;
+        this.seatHoldId = currentId;
+        this.heldSeats = heldSeats;
         this.customerEmail = customerEmail;
         this.creationTime = LocalDateTime.now();
         this.purchaseCompleted = false;
@@ -43,14 +43,10 @@ public class InMemorySeatHold implements SeatHold, Comparable<InMemorySeatHold>{
     }
 
     @Override
-    public int getSeatLevel() {
-        return level;
+    public Map<Integer, Integer> getHeldSeats() {
+        return heldSeats;
     }
 
-    @Override
-    public int getNumSeats() {
-        return numSeats;
-    }
 
     @Override
     public LocalDateTime getCreationTime() {
@@ -58,7 +54,7 @@ public class InMemorySeatHold implements SeatHold, Comparable<InMemorySeatHold>{
     }
 
     @Override
-    public UUID getSeatHoldId() {
+    public int getSeatHoldId() {
         return seatHoldId;
     }
 
